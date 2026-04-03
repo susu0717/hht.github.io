@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>火火兔AI拍学机P6 · 电商详情页文案</title>
+<style>
+  :root {
+    --orange: #FF6B1A;
+    --orange-light: #FFF0E8;
+    --orange-mid: #FFDCC8;
+    --purple: #5B4FCF;
+    --purple-light: #EEEDFE;
+    --teal: #0F9B75;
+    --teal-light: #E0F5EE;
+    --dark: #1C1C1C;
+    --mid: #555;
+    --muted: #888;
+    --line: #E8E8E8;
+    --bg: #FAFAFA;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  /* ─── 通用组件 ─── */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+  }
+  .badge-orange { background: var(--orange); color: #fff; }
+  .badge-purple { background: var(--purple); color: #fff; }
+  .badge-teal   { background: var(--teal);   color: #fff; }
+  .badge-outline { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .divider {
+    height: 8px;
+    background: #F0EFED;
+    margin: 0;
+  }
+
+  /* ─── 屏1：首屏 · 灵魂卖点 ─── */
+  .screen-hero {
+    background: var(--dark);
+    color: #fff;
+    padding: 56px 32px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: var(--orange);
+    border-radius: 50%;
+    opacity: .12;
+  }
+  .screen-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40px;
+    width: 160px; height: 160px;
+    background: var(--purple);
+    border-radius: 50%;
+    opacity: .15;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero-main {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero-main em {
+    font-style: normal;
+    color: var(--orange);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,.65);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: relative;
+  }
+  .hero-tag {
+    font-size: 12px;
+    color: rgba(255,255,255,.8);
+    border: 1px solid rgba(255,255,255,.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .hero-model {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-size: 11px;
+    color: rgba(255,255,255,.35);
+    letter-spacing: 1px;
+  }
+
+  /* ─── 屏2：一台顶五 ─── */
+  .screen-bundle {
+    background: var(--orange-light);
+    padding: 44px 28px;
+  }
+  .bundle-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .bundle-title em { font-style: normal; color: var(--orange); }
+  .bundle-desc {
+    font-size: 14px;
+    color: var(--mid);
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .bundle-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 3px solid var(--orange);
+  }
+  .bundle-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .bundle-item-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .bundle-footer {
+    font-size: 13px;
+    color: var(--orange);
+    font-weight: 600;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px dashed var(--orange-mid);
+  }
+
+  /* ─── 屏3：信任背书 ─── */
+  .screen-trust {
+    background: var(--white);
+    padding: 44px 28px;
+  }
+  .trust-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .trust-number sup { font-size: 28px; vertical-align: super; }
+  .trust-unit {
+    font-size: 18px;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .trust-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .trust-body strong { color: var(--dark); font-weight: 700; }
+  .trust-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .trust-pill {
+    font-size: 13px;
+    background: var(--orange-light);
+    color: var(--orange);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ─── 屏4：使用场景 ─── */
+  .screen-scene {
+    background: var(--dark);
+    padding: 44px 28px;
+    color: #fff;
+  }
+  .scene-header {
+    margin-bottom: 28px;
+  }
+  .scene-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .scene-title {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .scene-title em { font-style: normal; color: var(--orange); }
+  .scene-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .scene-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .scene-item:last-child { border-bottom: none; }
+  .scene-dot {
+    width: 32px;
+    height: 32px;
+    background: var(--orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .scene-content {}
+  .scene-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .scene-copy { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; }
+  .scene-copy em { font-style: normal; color: rgba(255,165,80,.9); }
+
+  /* ─── 功能屏通用 ─── */
+  .screen-func {
+    background: var(--white);
+    padding: 44px 28px;
+  }
+  .screen-func.alt { background: var(--bg); }
+  .func-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .func-title {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .func-title em { font-style: normal; color: var(--purple); }
+  .func-title.orange em { color: var(--orange); }
+  .func-title.teal em { color: var(--teal); }
+  .func-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .func-body strong { color: var(--dark); font-weight: 700; }
+  .func-body em { font-style: normal; color: var(--purple); font-weight: 600; }
+  .func-body em.orange { color: var(--orange); }
+  .func-body em.teal { color: var(--teal); }
+  .func-highlight {
+    background: var(--purple-light);
+    border-left: 3px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--purple);
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .func-highlight.orange {
+    background: var(--orange-light);
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+  .func-highlight.teal {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* ─── 屏5：AI启发式发问 ─── */
+  .thinking-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 20px 0;
+  }
+  .thinking-step {
+    flex: 1;
+    text-align: center;
+    background: var(--purple-light);
+    border-radius: 10px;
+    padding: 14px 8px;
+  }
+  .thinking-step-name { font-size: 15px; font-weight: 800; color: var(--purple); }
+  .thinking-step-desc { font-size: 11px; color: #7B6FCF; margin-top: 3px; }
+  .thinking-arrow {
+    font-size: 18px;
+    color: var(--purple);
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+  .qa-demo {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .qa-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .qa-row:last-child { margin-bottom: 0; }
+  .qa-who {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .qa-child { background: #E8E4FF; color: var(--purple); }
+  .qa-ai { background: var(--orange-mid); color: #A04000; }
+  .qa-text { font-size: 13px; color: var(--dark); line-height: 1.65; }
+
+  /* ─── 屏6：AI精准分龄（升级强卖点） ─── */
+  .screen-age {
+    background: var(--dark);
+    padding: 44px 28px;
+    color: #fff;
+  }
+  .age-title {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .age-title em { font-style: normal; color: #FFB444; }
+  .age-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .age-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .age-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .age-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .age-badge {
+    font-size: 11px;
+    font-weight: 700;
+    background: #FFB444;
+    color: #3D2000;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .age-q { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+  .age-a { font-size: 14px; color: #fff; line-height: 1.65; }
+  .age-a em { font-style: normal; color: #FFB444; font-weight: 600; }
+  .age-footer {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(255,180,68,.12);
+    border-radius: 10px;
+    font-size: 14px;
+    color: #FFB444;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ─── 屏7：熏听资源 ─── */
+  .audio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .audio-card {
+    background: var(--teal-light);
+    border-radius: 10px;
+    padding: 14px;
+    border-top: 2px solid var(--teal);
+  }
+  .audio-card-type { font-size: 11px; color: var(--teal); font-weight: 700; margin-bottom: 4px; }
+  .audio-card-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+  .audio-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 20px 0 10px;
+  }
+  .audio-stat-num { font-size: 48px; font-weight: 900; color: var(--teal); line-height: 1; }
+  .audio-stat-unit { font-size: 16px; color: var(--dark); font-weight: 700; }
+
+  /* ─── 屏8：AI超级学伴 ─── */
+  .companion-card {
+    background: var(--purple-light);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .companion-time {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .companion-time span { font-size: 16px; font-weight: 600; }
+  .companion-desc { font-size: 13px; color: #6055B0; margin-top: 6px; }
+  .companion-scenes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .companion-scene-tag {
+    font-size: 12px;
+    background: rgba(91,79,207,.12);
+    color: var(--purple);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ─── 屏9：AI趣味特效 ─── */
+  .effects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .effect-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: var(--orange-light);
+    border-radius: 10px;
+  }
+  .effect-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--orange);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .effect-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  .effect-desc { font-size: 12px; color: var(--muted); }
+
+  /* ─── 屏10：护眼屏 ─── */
+  .screen-eye {
+    background: var(--bg);
+    padding: 44px 28px;
+  }
+  .eye-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .eye-spec {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .eye-spec-val { font-size: 22px; font-weight: 900; color: var(--teal); }
+  .eye-spec-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ─── 屏11：家长报告 ─── */
+  .report-row {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+    flex-direction: column;
+  }
+  .report-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--line);
+  }
+  .report-num {
+    width: 28px;
+    height: 28px;
+    background: var(--dark);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .report-text { font-size: 14px; color: var(--mid); line-height: 1.65; }
+  .report-text strong { color: var(--dark); }
+
+  /* ─── 结尾 CTA ─── */
+  .screen-cta {
+    background: var(--orange);
+    padding: 48px 28px;
+    text-align: center;
+    color: #fff;
+  }
+  .cta-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .cta-sub {
+    font-size: 14px;
+    opacity: .85;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--orange);
+    font-size: 17px;
+    font-weight: 800;
+    padding: 14px 40px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .cta-trust {
+    font-size: 12px;
+    opacity: .7;
+  }
+
+  /* ─── 编辑标注 ─── */
+  .editor-note {
+    font-size: 11px;
+    color: var(--muted);
+    border-left: 2px solid var(--line);
+    padding: 4px 10px;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+  屏1 · 首屏 / 灵魂卖点
+══════════════════════════════════════ -->
+<section class="screen-hero">
+  <div class="hero-model">火火兔 · P6</div>
+  <div class="hero-eyebrow">AI 拍学机 · 全新一代</div>
+  <h1 class="hero-main">
+    AI拍照识万物<br>
+    让世界成为<br>
+    <em>孩子的移动课堂</em>
+  </h1>
+  <p class="hero-sub">
+    用镜头解锁好奇心<br>
+    拍一拍，问不停，学不停
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">AI启发式发问</span>
+    <span class="hero-tag">精准分龄匹配</span>
+    <span class="hero-tag">1600+ 熏听音频</span>
+    <span class="hero-tag">IPS硬件护眼屏</span>
+    <span class="hero-tag">24h AI学伴</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏2 · 囊括产品 / 一台顶五
+══════════════════════════════════════ -->
+<section class="screen-bundle">
+  <p class="section-label">囊括产品</p>
+  <h2 class="bundle-title">不是一台玩具<br><em>是五合一的学习伙伴</em></h2>
+  <p class="bundle-desc">
+    一台P6，涵盖孩子成长所需的五大学习模块<br>
+    买一台，省五台的钱，更省五台的管理精力
+  </p>
+  <div class="bundle-grid">
+    <div class="bundle-item">
+      <div class="bundle-item-name">AI拍学机</div>
+      <div class="bundle-item-desc">拍即识别，启发思考，万物皆课堂</div>
+    </div>
+    <div class="bundle-item">
+      <div class="bundle-item-name">早教机</div>
+      <div class="bundle-item-desc">10年早教积累，懂中国孩子学习路径</div>
+    </div>
+    <div class="bundle-item">
+      <div class="bundle-item-name">AI大模型</div>
+      <div class="bundle-item-desc">国内顶级AI能力，24h在线解答</div>
+    </div>
+    <div class="bundle-item">
+      <div class="bundle-item-name">英语外教</div>
+      <div class="bundle-item-desc">口语对话练习，自然习得语言</div>
+    </div>
+    <div class="bundle-item">
+      <div class="bundle-item-name">科普百科</div>
+      <div class="bundle-item-desc">海量科普内容，满足孩子好奇心</div>
+    </div>
+    <div class="bundle-item">
+      <div class="bundle-item-name">国学读物</div>
+      <div class="bundle-item-desc">中华文化启蒙，根植文化自信</div>
+    </div>
+  </div>
+  <div class="bundle-footer">一台顶五 · 用得到的每一个功能，都是为孩子成长设计的</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏3 · 信任背书
+══════════════════════════════════════ -->
+<section class="screen-trust">
+  <p class="section-label">信任背书</p>
+  <div class="trust-number">10<sup>+</sup></div>
+  <div class="trust-unit">年专业早教经验</div>
+  <p class="trust-body">
+    火火兔深耕儿童早教领域十余年，<br>
+    <strong>不追技术风口，只研究孩子的认知发展规律。</strong><br><br>
+    我们知道3岁孩子的注意力边界在哪里<br>
+    知道6岁孩子的问题该怎么引导而不是直接回答<br>
+    知道8岁孩子开始需要独立探索而不是被喂答案<br><br>
+    <strong>P6，是十年积累交出的AI时代答卷。</strong>
+  </p>
+  <div class="trust-pills">
+    <span class="trust-pill">10余年早教研发</span>
+    <span class="trust-pill">更懂中国孩子</span>
+    <span class="trust-pill">科学认知路径设计</span>
+    <span class="trust-pill">专业内容团队出品</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏4 · 使用场景
+══════════════════════════════════════ -->
+<section class="screen-scene">
+  <div class="scene-header">
+    <div class="scene-label">USAGE SCENARIOS · 使用场景</div>
+    <h2 class="scene-title">
+      孩子去哪，<em>学习就在哪</em><br>
+      7个场景，全天候陪伴
+    </h2>
+  </div>
+  <div class="scene-list">
+    <div class="scene-item">
+      <div class="scene-dot">01</div>
+      <div class="scene-content">
+        <div class="scene-name">户外探索</div>
+        <div class="scene-copy">看到花虫草木，拍下来，<em>AI立刻变身自然科学老师</em>，从观察到追问，每一步都是发现</div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">02</div>
+      <div class="scene-content">
+        <div class="scene-name">在途熏听</div>
+        <div class="scene-copy">上下学路上20分钟，<em>1600+音频随机播放</em>，孩子不知道自己在"学习"，只知道在听好听的故事</div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">03</div>
+      <div class="scene-content">
+        <div class="scene-name">景点研学</div>
+        <div class="scene-copy">博物馆、古迹、自然保护区，拍下展品，<em>AI讲历史、讲故事、讲科学</em>，孩子的研学才算真的有"学"</div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">04</div>
+      <div class="scene-content">
+        <div class="scene-name">逛动物园</div>
+        <div class="scene-copy">孩子问"长颈鹿为什么脖子那么长"，不用说"我不知道"——<em>拍一下，AI引导孩子自己想出来</em></div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">05</div>
+      <div class="scene-content">
+        <div class="scene-name">口语对话</div>
+        <div class="scene-copy">英语外教随时在线，<em>孩子说，AI回应</em>，在真实对话里自然习得语感，比跟读练习有趣十倍</div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">06</div>
+      <div class="scene-content">
+        <div class="scene-name">对话互动</div>
+        <div class="scene-copy">孩子今天在学校遇到了问题、有了新想法，<em>AI超级学伴24h在线接住每一个奇思妙想</em></div>
+      </div>
+    </div>
+    <div class="scene-item">
+      <div class="scene-dot">07</div>
+      <div class="scene-content">
+        <div class="scene-name">睡前故事</div>
+        <div class="scene-copy">孩子说主题，<em>AI即时生成专属故事</em>，今晚的故事，全世界只有你的孩子在听</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏5 · 软件功能 · AI启发式发问（强卖点）
+══════════════════════════════════════ -->
+<section class="screen-func">
+  <div class="func-eyebrow">
+    <span class="badge badge-purple">核心能力</span>
+    <span style="font-size:12px;color:var(--muted);">AI启发式发问</span>
+  </div>
+  <h2 class="func-title">别的AI给答案<br><em>P6让孩子爱上提问</em></h2>
+  <p class="func-body">
+    好奇心是孩子最贵的天赋。<br>
+    但"我不知道"三个字，每说一次，就关上一扇门。<br><br>
+    火火兔P6用<strong>「观察→探究→追问」</strong>三步法，<br>
+    不直接告诉孩子答案，<em>引导孩子自己想到答案。</em><br><br>
+    养成会提问的孩子，比记住一万个知识点更值钱。
+  </p>
+
+  <div class="thinking-flow">
+    <div class="thinking-step">
+      <div class="thinking-step-name">观察</div>
+      <div class="thinking-step-desc">你看到了什么？</div>
+    </div>
+    <div class="thinking-arrow">→</div>
+    <div class="thinking-step">
+      <div class="thinking-step-name">探究</div>
+      <div class="thinking-step-desc">你觉得为什么？</div>
+    </div>
+    <div class="thinking-arrow">→</div>
+    <div class="thinking-step">
+      <div class="thinking-step-name">追问</div>
+      <div class="thinking-step-desc">还可以怎样？</div>
+    </div>
+  </div>
+
+  <div class="func-highlight">
+    三步养成科学思维，让孩子不只得到答案——<br>
+    而是学会"怎么找答案"
+  </div>
+
+  <div class="qa-demo">
+    <p style="font-size:11px;color:var(--muted);margin-bottom:10px;font-weight:600;">真实对话示例 · 孩子拍下蜜蜂后</p>
+    <div class="qa-row">
+      <span class="qa-who qa-child">孩子</span>
+      <div class="qa-text">这只蜜蜂为什么身上有黄黑条纹？</div>
+    </div>
+    <div class="qa-row">
+      <span class="qa-who qa-ai">AI</span>
+      <div class="qa-text">你觉得，这个颜色是在告诉其他动物什么？想象你是一只小鸟，看到它你会怎么做？</div>
+    </div>
+    <div class="qa-row">
+      <span class="qa-who qa-child">孩子</span>
+      <div class="qa-text">我不敢吃它！因为黄黑色好像在说"我有毒"！</div>
+    </div>
+    <div class="qa-row">
+      <span class="qa-who qa-ai">AI</span>
+      <div class="qa-text">答对了！这叫"警戒色"，自然界里还有哪些动物也用这招？你能找到三个吗？</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏6 · AI精准分龄（优化升级为强卖点）
+══════════════════════════════════════ -->
+<section class="screen-age">
+  <p class="scene-label">优化升级卖点 · AI精准分龄</p>
+  <h2 class="age-title">同一个问题<br><em>3岁和8岁的孩子<br>需要不一样的答案</em></h2>
+  <p class="age-subtitle">
+    AI精准识别孩子年龄阶段，<br>
+    自动调整回答的深度、词汇和方式——<br>
+    不超纲，不降维，刚刚好。
+  </p>
+
+  <div class="age-compare">
+    <div class="age-card">
+      <div class="age-card-head">
+        <span class="age-badge">3–4岁</span>
+        <span style="font-size:13px;color:rgba(255,255,255,.5);">同一个问题：蝴蝶怎么飞？</span>
+      </div>
+      <div class="age-q">AI的回答方式：</div>
+      <div class="age-a">
+        "蝴蝶有<em>两对漂亮的翅膀</em>，像扇扇子一样拍一拍，就飞起来啦！你用手也试试？"<br>
+        <span style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;display:block">· 用动作类比 · 短句子 · 邀请参与</span>
+      </div>
+    </div>
+    <div class="age-card">
+      <div class="age-card-head">
+        <span class="age-badge">7–8岁</span>
+        <span style="font-size:13px;color:rgba(255,255,255,.5);">同一个问题：蝴蝶怎么飞？</span>
+      </div>
+      <div class="age-q">AI的回答方式：</div>
+      <div class="age-a">
+        "蝴蝶靠<em>肌肉控制翅膀振动产生升力</em>，翅膀上的鳞片还能调整飞行方向。你知道蜻蜓和蝴蝶飞的方式有什么不同吗？"<br>
+        <span style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;display:block">· 引入专业词汇 · 横向比较 · 激发延伸思考</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="age-footer">
+    AI比父母更清楚孩子的认知节奏<br>
+    每个阶段，给最合适的那个答案
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏7 · 同步熏听资源
+══════════════════════════════════════ -->
+<section class="screen-func alt">
+  <div class="func-eyebrow">
+    <span class="badge badge-teal">支撑卖点</span>
+    <span style="font-size:12px;color:var(--muted);">同步熏听资源</span>
+  </div>
+  <h2 class="func-title teal">碎片时间不碎片<br><em>1600+ 音频全程陪伴</em></h2>
+
+  <div class="audio-stat">
+    <div class="audio-stat-num">1600</div>
+    <div class="audio-stat-unit">+ 条熏听音频</div>
+  </div>
+  <p class="func-body">
+    上下学路上、餐前等待、睡前放松——<br>
+    孩子不知道自己在"学习"，只知道在听喜欢的内容。<br>
+    <strong>这是最无痛的成长方式。</strong>
+  </p>
+
+  <div class="audio-grid">
+    <div class="audio-card">
+      <div class="audio-card-type">文学</div>
+      <div class="audio-card-desc">经典故事、儿童文学、名著改编，培养语感与想象力</div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-card-type">艺术</div>
+      <div class="audio-card-desc">音乐启蒙、艺术赏析，打开美育的大门</div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-card-type">科普</div>
+      <div class="audio-card-desc">自然、宇宙、人体……孩子问的问题，这里都有</div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-card-type">儿歌</div>
+      <div class="audio-card-desc">经典儿歌、童谣、韵律故事，越听越爱听</div>
+    </div>
+  </div>
+
+  <div class="func-highlight teal">
+    教材同步熏听：语文、英语 1–6 年级各版本同步<br>
+    课内知识，在路上就听进去了
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏8 · AI超级学伴团
+══════════════════════════════════════ -->
+<section class="screen-func">
+  <div class="func-eyebrow">
+    <span class="badge badge-purple">AI能力</span>
+    <span style="font-size:12px;color:var(--muted);">超级学伴团</span>
+  </div>
+  <h2 class="func-title">接住孩子<br><em>每一个奇思妙想</em></h2>
+  <p class="func-body">
+    孩子睡前突然问"恐龙为什么灭绝了"——<br>
+    孩子看到天上的云说"它像一艘飞船"——<br>
+    孩子问你"人死了去哪里"——<br><br>
+    有些问题，你来不及回答，也不知道该怎么答。<br>
+    <em>AI超级学伴，24小时在线，永远准备好了。</em>
+  </p>
+
+  <div class="companion-card">
+    <div class="companion-time">24<span>h</span></div>
+    <div class="companion-desc">全天候在线 · 随问随答 · 从不说"等一下"</div>
+    <div class="companion-scenes">
+      <span class="companion-scene-tag">睡前问题</span>
+      <span class="companion-scene-tag">放学分享</span>
+      <span class="companion-scene-tag">奇思妙想</span>
+      <span class="companion-scene-tag">情绪倾诉</span>
+      <span class="companion-scene-tag">故事创作</span>
+      <span class="companion-scene-tag">角色扮演</span>
+    </div>
+  </div>
+
+  <p class="func-body" style="margin-bottom:0">
+    不是让孩子依赖AI，<br>
+    而是让孩子的每一个"为什么"都被认真对待。
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏9 · AI趣味特效
+══════════════════════════════════════ -->
+<section class="screen-func alt">
+  <div class="func-eyebrow">
+    <span class="badge badge-orange">创意功能</span>
+    <span style="font-size:12px;color:var(--muted);">AI趣味特效</span>
+  </div>
+  <h2 class="func-title orange">孩子的创意<br><em>值得被看见</em></h2>
+  <p class="func-body">
+    孩子画了一只小怪兽、用积木搭了一座城堡、<br>
+    想象了一朵会唱歌的云——<br>
+    <em class="orange">拍下来，AI让它们动起来、活起来、变成只属于孩子的作品。</em>
+  </p>
+
+  <div class="effects-list">
+    <div class="effect-row">
+      <div class="effect-icon">人脸<br>贴纸</div>
+      <div>
+        <div class="effect-name">人脸贴纸</div>
+        <div class="effect-desc">实时识别面部，叠加趣味AR贴纸，孩子的自拍变得好玩一百倍</div>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon">拍景<br>成画</div>
+      <div>
+        <div class="effect-name">拍景成画</div>
+        <div class="effect-desc">拍下真实场景，AI即时转换成水彩画、素描、插画风，培养审美的同时发现世界的美</div>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon">涂鸦<br>生图</div>
+      <div>
+        <div class="effect-name">涂鸦生图</div>
+        <div class="effect-desc">孩子随手涂鸦，AI理解创意并生成精美图像，让每个孩子都能成为艺术家</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="func-highlight orange">
+    不是滤镜，是创作工具——<br>
+    AI让孩子的每一个创意瞬间落地
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏10 · 硬件 · 护眼屏
+══════════════════════════════════════ -->
+<section class="screen-eye">
+  <div class="func-eyebrow">
+    <span class="badge badge-teal">硬件品质</span>
+    <span style="font-size:12px;color:var(--muted);">护眼能力</span>
+  </div>
+  <h2 class="func-title teal">妈妈最在意的<br><em>我们最认真做</em></h2>
+  <p class="func-body">
+    再好的内容，如果伤害孩子的眼睛，都是零。<br>
+    P6的护眼，不是软件滤镜凑数——<br>
+    <strong>是硬件级的真护眼。</strong>
+  </p>
+
+  <div class="eye-specs">
+    <div class="eye-spec">
+      <div class="eye-spec-val">3.54"</div>
+      <div class="eye-spec-label">大屏显示</div>
+    </div>
+    <div class="eye-spec">
+      <div class="eye-spec-val">IPS</div>
+      <div class="eye-spec-label">硬件级护眼面板</div>
+    </div>
+    <div class="eye-spec">
+      <div class="eye-spec-val">低蓝光</div>
+      <div class="eye-spec-label">减少有害光线</div>
+    </div>
+    <div class="eye-spec">
+      <div class="eye-spec-val">防眩光</div>
+      <div class="eye-spec-label">室外也清晰可视</div>
+    </div>
+  </div>
+
+  <div class="func-highlight teal">
+    买得放心，用得安心——<br>
+    孩子多看一小时，妈妈少担心一分
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  屏11 · 家长中心 / 学习报告
+══════════════════════════════════════ -->
+<section class="screen-func">
+  <div class="func-eyebrow">
+    <span class="badge badge-orange">家长功能</span>
+    <span style="font-size:12px;color:var(--muted);">家长中心 · 学习报告</span>
+  </div>
+  <h2 class="func-title">孩子在想什么<br><em>你随时知道</em></h2>
+  <p class="func-body">
+    孩子今天拍了什么、问了什么、探索去了哪里——<br>
+    <em class="orange">不是监控，是参与。</em><br>
+    知道孩子在想什么，才能更好地陪伴。
+  </p>
+
+  <div class="report-row">
+    <div class="report-item">
+      <div class="report-num">1</div>
+      <div class="report-text"><strong>实时探索轨迹</strong><br>孩子拍了什么、问了哪些问题，家长端同步推送，孩子的好奇心一目了然</div>
+    </div>
+    <div class="report-item">
+      <div class="report-num">2</div>
+      <div class="report-text"><strong>成长分析报告</strong><br>定期汇总孩子的学习偏好、探索领域，帮助家长了解孩子的认知发展轨迹</div>
+    </div>
+    <div class="report-item">
+      <div class="report-num">3</div>
+      <div class="report-text"><strong>陪伴话题建议</strong><br>基于孩子的探索记录，推荐今天可以和孩子聊的话题——让每一次晚餐都有说不完的话</div>
+    </div>
+  </div>
+
+  <div class="func-highlight orange">
+    孩子成长清晰可见<br>
+    每位家长都是孩子成长路上最好的见证者
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+  结尾 CTA
+══════════════════════════════════════ -->
+<section class="screen-cta">
+  <h2 class="cta-title">
+    好奇心是孩子<br>
+    最贵的天赋
+  </h2>
+  <p class="cta-sub">
+    别让"我不知道"三个字关上它<br>
+    火火兔AI拍学机P6<br>
+    用镜头解锁好奇心，让世界成为孩子的移动课堂
+  </p>
+  <div class="cta-btn">立即了解 P6</div>
+  <div class="cta-trust">10余年专业早教经验 · 更懂中国孩子的学习路径</div>
+</section>
+
+</body>
+</html>
