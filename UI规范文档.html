@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>早教数字游戏 · UI交互视觉规范</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg: #F7F5F2;
+      --surface: #FFFFFF;
+      --accent1: #FF6B6B;
+      --accent2: #4ECDC4;
+      --accent3: #FFD166;
+      --accent4: #A78BFA;
+      --text-primary: #1A1A2E;
+      --text-secondary: #5A5A7A;
+      --text-muted: #9999BB;
+      --border: #E8E6F0;
+      --tag-bg: #F0EDFF;
+      --tag-text: #6B5CE7;
+      --code-bg: #1E1E3F;
+      --code-text: #A9FFCB;
+      --warn: #FFF3CD;
+      --warn-border: #FFD166;
+      --info: #E0F4FF;
+      --info-border: #4ECDC4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1A1A2E 0%, #2D2D5E 100%);
+      color: white;
+      padding: 48px 64px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(78,205,196,0.15) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .doc-type {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+    }
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── Layout ── */
+    .page { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+
+    /* ── Section ── */
+    section { margin-bottom: 56px; }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    section > h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+    section > h2 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      background: var(--text-primary);
+      color: white;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card h3 .icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .card p, .card li { color: var(--text-secondary); font-size: 13.5px; }
+    .card ul { padding-left: 20px; }
+    .card li { margin-bottom: 6px; }
+
+    /* ── Grid layouts ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    @media(max-width: 680px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* ── Color swatches ── */
+    .swatch-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .swatch-block {
+      width: 56px; height: 56px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .swatch span {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .swatch label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ── Tag ── */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .tag.green { background: #E8F8F5; color: #27AE60; }
+    .tag.orange { background: #FFF4E5; color: #E67E22; }
+    .tag.red { background: #FDECEA; color: #E74C3C; }
+    .tag.blue { background: #E8F4FD; color: #2980B9; }
+
+    /* ── State table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    th {
+      background: #F0EDFF;
+      color: var(--tag-text);
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #FAFAFA; }
+
+    /* ── Alert boxes ── */
+    .alert {
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .alert.warn { background: var(--warn); border-left: 3px solid var(--warn-border); }
+    .alert.info { background: var(--info); border-left: 3px solid var(--info-border); }
+    .alert .emoji { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .alert p { color: var(--text-secondary); margin: 0; }
+    .alert strong { color: var(--text-primary); }
+
+    /* ── Interaction flow ── */
+    .flow {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 140px;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 16px;
+      color: var(--text-muted);
+      font-size: 18px;
+      z-index: 2;
+    }
+    .flow-bubble {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-right: 24px;
+    }
+    .flow-bubble .step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .flow-bubble p {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .flow-bubble .detail {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    /* ── Number element visual ── */
+    .num-showcase {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+    .num-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      min-width: 110px;
+    }
+    .num-card .digit {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .num-card .num-name { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .num-card .num-hex { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); }
+    .num-card .num-feature { 
+      font-size: 11px; 
+      color: var(--text-secondary);
+      margin-top: 6px;
+      background: var(--bg);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
+    /* ── Spec row ── */
+    .spec-row {
+      display: flex;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      width: 180px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .spec-val {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .spec-val code {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent1);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 20px 0;
+    }
+
+    /* ── Checklist ── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 4px;
+      color: var(--text-muted);
+    }
+    .checklist li.done::before { content: '✓'; color: #27AE60; }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="doc-type">UI Design &amp; Interaction Spec · 早教应用</div>
+    <h1>数字认知游戏界面规范</h1>
+    <p>Number Learning Game · 面向 UI 设计师 &amp; 前端/客户端开发工程师</p>
+    <div class="meta-row">
+      <span class="meta-pill">📱 目标平台：iOS / Android 平板 &amp; 手机</span>
+      <span class="meta-pill">👶 目标用户：2–6 岁幼儿（由家长陪同）</span>
+      <span class="meta-pill">🎯 核心目标：数字 1–10 认知与顺序排列</span>
+      <span class="meta-pill">🗓 版本：v1.0</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ① 界面概览 -->
+  <section>
+    <div class="section-label">Section 01</div>
+    <h2><span class="num">1</span>界面概览与结构层级</h2>
+
+    <div class="alert info">
+      <span class="emoji">🔍</span>
+      <p><strong>界面解读：</strong>当前页面为「数字排序关卡」，屏幕顶部横排展示乱序数字卡片（6、1、3、2、5），中央区域有角色引导（蓝色小象吉祥物），右侧有第二个角色待命。玩法核心为：幼儿将数字拖拽/点击恢复为正确顺序。</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#EEF2FF">🏗</span>页面层级结构</h3>
+        <ul>
+          <li><strong>Layer 0 背景层</strong>：纯色底色填充（珊瑚粉）</li>
+          <li><strong>Layer 1 角色层</strong>：中央引导吉祥物（小象）、右侧待命角色</li>
+          <li><strong>Layer 2 游戏元素层</strong>：可交互数字卡片组（顶部横排）</li>
+          <li><strong>Layer 3 UI 控件层</strong>：返回按钮、进度条</li>
+          <li><strong>Layer 4 反馈层</strong>：动效粒子、音效、正确/错误提示</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#FFF0F0">📐</span>布局模式</h3>
+        <ul>
+          <li><strong>整体布局</strong>：竖版满屏，横向居中对齐</li>
+          <li><strong>数字区</strong>：顶部 1/3 区域，Flexbox 横排等间距</li>
+          <li><strong>角色区</strong>：中部 1/2 区域，绝对定位</li>
+          <li><strong>控件区</strong>：顶部左上角返回键；底部进度条</li>
+          <li><strong>安全区</strong>：顶部 /底部 StatusBar 各留 safe area</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② 视觉规范 -->
+  <section>
+    <div class="section-label">Section 02</div>
+    <h2><span class="num">2</span>视觉设计规范</h2>
+
+    <div class="card">
+      <h3><span class="icon" style="background:#FFF9E6">🎨</span>色彩系统</h3>
+      <p style="margin-bottom:16px; color:var(--text-secondary)">整体色调明亮、高饱和，符合幼儿视觉偏好。背景采用低对比的暖粉色，数字元素高对比强调。</p>
+
+      <strong style="font-size:12px; color:var(--text-muted)">背景 &amp; 基础色</strong>
+      <div class="swatch-row" style="margin-bottom:20px">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F0A090"></div>
+          <label>主背景</label>
+          <span>#F0A090</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFFFFF"></div>
+          <label>纯白</label>
+          <span>#FFFFFF</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#1A1A2E"></div>
+          <label>深色文字</label>
+          <span>#1A1A2E</span>
+        </div>
+      </div>
+
+      <strong style="font-size:12px; color:var(--text-muted)">数字元素色（各数字独立主色）</strong>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#4ECDC4"></div>
+          <label>数字 6</label>
+          <span>#4ECDC4</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#87CEEB"></div>
+          <label>数字 1</label>
+          <span>#87CEEB</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FF7043"></div>
+          <label>数字 3</label>
+          <span>#FF7043</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFD700"></div>
+          <label>数字 2</label>
+          <span>#FFD700</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FF69B4"></div>
+          <label>数字 5</label>
+          <span>#FF69B4</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#F0FFF4">✏️</span>字体 &amp; 数字字形规范</h3>
+        <ul>
+          <li><strong>数字字形</strong>：卡通手绘风格 SVG 插图，非字体渲染</li>
+          <li>字形笔画末端为<strong>圆头圆尾</strong>，无尖角</li>
+          <li>数字内嵌小动物/角色（蛇缠绕"3"、小鸟站在"2"上）</li>
+          <li>辅助文字（如关卡说明）建议使用圆体字</li>
+          <li>推荐字体：<code>圆体</code>、<code>娃娃体</code> 或 <code>Fredoka One</code></li>
+          <li>最小可读字号：<strong>18sp</strong>（面向幼儿）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#FFF0F6">📏</span>尺寸 &amp; 间距规范</h3>
+        <div class="spec-row"><span class="spec-key">数字卡片高度</span><span class="spec-val"><code>72–88dp</code></span></div>
+        <div class="spec-row"><span class="spec-key">数字卡片间距</span><span class="spec-val"><code>12dp</code></span></div>
+        <div class="spec-row"><span class="spec-key">顶部内边距</span><span class="spec-val"><code>24dp + SafeArea</code></span></div>
+        <div class="spec-row"><span class="spec-key">返回按钮尺寸</span><span class="spec-val"><code>44×44dp（最小触控区）</code></span></div>
+        <div class="spec-row"><span class="spec-key">角色区域高度</span><span class="spec-val"><code>屏幕高度 45%–50%</code></span></div>
+        <div class="spec-row"><span class="spec-key">进度条高度</span><span class="spec-val"><code>4dp</code></span></div>
+      </div>
+    </div>
+
+    <!-- 数字展示 -->
+    <div class="card">
+      <h3><span class="icon" style="background:#FFF9E6">🔢</span>数字元素一览（本关卡展示的数字）</h3>
+      <div class="num-showcase">
+        <div class="num-card">
+          <div class="digit" style="color:#4ECDC4">6</div>
+          <div class="num-name">数字 六</div>
+          <div class="num-hex">#4ECDC4</div>
+          <div class="num-feature">无附属角色</div>
+        </div>
+        <div class="num-card">
+          <div class="digit" style="color:#87CEEB">1</div>
+          <div class="num-name">数字 一</div>
+          <div class="num-hex">#87CEEB</div>
+          <div class="num-feature">无附属角色</div>
+        </div>
+        <div class="num-card">
+          <div class="digit" style="color:#FF7043">3</div>
+          <div class="num-name">数字 三</div>
+          <div class="num-hex">#FF7043</div>
+          <div class="num-feature">🐍 蛇形缠绕</div>
+        </div>
+        <div class="num-card">
+          <div class="digit" style="color:#FFD700">2</div>
+          <div class="num-name">数字 二</div>
+          <div class="num-hex">#FFD700</div>
+          <div class="num-feature">🐦 小鸟站立</div>
+        </div>
+        <div class="num-card">
+          <div class="digit" style="color:#FF69B4">5</div>
+          <div class="num-name">数字 五</div>
+          <div class="num-hex">#FF69B4</div>
+          <div class="num-feature">无附属角色</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 角色规范 -->
+  <section>
+    <div class="section-label">Section 03</div>
+    <h2><span class="num">3</span>角色（吉祥物）设计规范</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#E0F7FA">🐘</span>主引导角色 — 蓝色小象</h3>
+        <ul>
+          <li><strong>位置</strong>：屏幕中央，垂直居中偏下</li>
+          <li><strong>体色</strong>：薄荷蓝 <code>#5BC8C4</code>，耳朵浅粉 <code>#FFB7C5</code></li>
+          <li><strong>造型</strong>：圆润卡通，大眼睛，友善表情</li>
+          <li><strong>手持道具</strong>：鼻子前端夹持一朵小花（增加亲近感）</li>
+          <li><strong>动画状态</strong>：待机时轻微上下浮动（2s loop）；答对时欢呼跳跃；答错时摇头安慰</li>
+          <li><strong>尺寸</strong>：约占屏幕宽度 <code>45–50%</code></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#F3FFE3">👾</span>次要角色 — 绿色怪兽（右侧）</h3>
+        <ul>
+          <li><strong>位置</strong>：屏幕右下角，部分被裁切（暗示更多内容/下一关）</li>
+          <li><strong>体色</strong>：草绿 <code>#6DD47E</code></li>
+          <li><strong>配件</strong>：头戴红色帽子，增加趣味性</li>
+          <li><strong>交互触发</strong>：点击该角色可能触发「查看下一关预告」或「角色介绍」弹层</li>
+          <li><strong>动画</strong>：待机时偶发探头动画（peek in/out）</li>
+          <li><strong>裁切意图</strong>：引导视线，暗示横向内容可滑动或下一关存在</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert warn">
+      <span class="emoji">⚠️</span>
+      <p><strong>设计注意：</strong>所有角色需保持统一的圆润卡通风格，避免尖锐线条。角色表情需简洁明确（可用表情符号原型参考），确保 2 岁幼儿可识别。角色资源建议导出为 <strong>Lottie JSON</strong> 格式，便于开发实现骨骼动画与状态切换。</p>
+    </div>
+  </section>
+
+  <!-- ④ 交互规范 -->
+  <section>
+    <div class="section-label">Section 04</div>
+    <h2><span class="num">4</span>交互行为规范</h2>
+
+    <div class="card" style="margin-bottom:20px">
+      <h3><span class="icon" style="background:#EEF2FF">🎮</span>核心玩法交互流程</h3>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-bubble">
+            <div class="step-num">STEP 01</div>
+            <p>进入关卡</p>
+            <div class="detail">乱序数字以弹入动效从顶部出现，小象登场动画播放</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-bubble">
+            <div class="step-num">STEP 02</div>
+            <p>引导提示</p>
+            <div class="detail">小象语音播报："请把数字按顺序排好！"（可选语音泡泡）</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-bubble">
+            <div class="step-num">STEP 03</div>
+            <p>用户交互</p>
+            <div class="detail">拖拽或点击数字卡片，进行排序操作</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-bubble">
+            <div class="step-num">STEP 04</div>
+            <p>实时反馈</p>
+            <div class="detail">每次放置后播放数字音效，小象给出表情反应</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-bubble">
+            <div class="step-num">STEP 05</div>
+            <p>完成判定</p>
+            <div class="detail">全部正确 → 庆祝动效 + 音效；出现星星奖励 + 过关弹层</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#FFF0F0">👆</span>数字卡片交互方式</h3>
+        <table>
+          <thead>
+            <tr><th>交互手势</th><th>触发行为</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>单击/单触</td><td>播放该数字读音（中文/英文可切换）</td></tr>
+            <tr><td>长按</td><td>进入「拖拽模式」，卡片放大 1.15× 并跟随手指</td></tr>
+            <tr><td>拖拽中</td><td>目标位置显示半透明占位框；其他卡片自动让位</td></tr>
+            <tr><td>释放（正确位置）</td><td>吸附动效 + 闪光粒子 + 数字读音</td></tr>
+            <tr><td>释放（错误位置）</td><td>弹回原位动效 + 轻柔错误提示音</td></tr>
+            <tr><td>双击</td><td>数字字形展示小动画（如数字跳动）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#E8F8F5">📊</span>数字卡片状态机</h3>
+        <table>
+          <thead>
+            <tr><th>状态</th><th>视觉表现</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="tag blue">idle</span> 待机</td><td>正常显示，轻微呼吸动画（scale 1.0↔1.03）</td></tr>
+            <tr><td><span class="tag orange">hover</span> 悬浮</td><td>轻微放大 1.05×，投影加深</td></tr>
+            <tr><td><span class="tag">dragging</span> 拖拽中</td><td>放大 1.15×，旋转 ±5°，阴影强调，Z层置顶</td></tr>
+            <tr><td><span class="tag green">correct</span> 已放对</td><td>绿色边框光晕，锁定（禁止再拖），✓ 小图标</td></tr>
+            <tr><td><span class="tag red">wrong</span> 放错</td><td>红色闪烁一次，弹回原位，恢复 idle</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon" style="background:#FFF3E0">🔊</span>音效与语音反馈规范</h3>
+      <div class="grid-3">
+        <div>
+          <strong style="font-size:12px">触发时机</strong>
+          <ul style="margin-top:8px">
+            <li>点击数字 → 播报数字名称</li>
+            <li>拖拽开始 → 轻柔拾取音</li>
+            <li>放置正确 → 清脆奖励音</li>
+            <li>放置错误 → 轻柔错误音</li>
+            <li>全部完成 → 欢呼完成音乐（3–5秒）</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="font-size:12px">音效设计要求</strong>
+          <ul style="margin-top:8px">
+            <li>所有音效时长 &lt; 1.5秒（错误提示 &lt; 0.8s）</li>
+            <li>音调明亮、不刺耳（适合幼儿）</li>
+            <li>语音录制采用女声/童声，亲切自然</li>
+            <li>支持「静音模式」（家长设置）</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="font-size:12px">语音多语言</strong>
+          <ul style="margin-top:8px">
+            <li>默认：普通话发音</li>
+            <li>可选：粤语、英语</li>
+            <li>语速：正常语速 × 0.85（清晰度优先）</li>
+            <li>语音文件格式：<code>.mp3</code> 48kHz</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 动效规范 -->
+  <section>
+    <div class="section-label">Section 05</div>
+    <h2><span class="num">5</span>动效规范</h2>
+
+    <div class="card">
+      <h3><span class="icon" style="background:#F3E8FF">✨</span>动效时间 &amp; 缓动曲线</h3>
+      <table>
+        <thead>
+          <tr><th>动效场景</th><th>时长</th><th>缓动曲线</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>页面进场</td><td>600ms</td><td>ease-out</td><td>数字依次弹入（stagger 80ms）</td></tr>
+          <tr><td>数字拖拽跟随</td><td>实时</td><td>线性</td><td>零延迟响应，确保跟手感</td></tr>
+          <tr><td>卡片放置吸附</td><td>200ms</td><td>spring (stiffness:400)</td><td>弹性吸附效果</td></tr>
+          <tr><td>放置错误弹回</td><td>350ms</td><td>cubic-bezier(.36,.07,.19,.97)</td><td>抖动 + 弹回</td></tr>
+          <tr><td>正确完成粒子</td><td>800ms</td><td>ease-out</td><td>星星/彩纸粒子爆发</td></tr>
+          <tr><td>吉祥物待机浮动</td><td>2000ms loop</td><td>ease-in-out</td><td>Y轴 ±6dp，无限循环</td></tr>
+          <tr><td>答对角色欢呼</td><td>1200ms</td><td>spring</td><td>跳跃 + 挥手（Lottie 动画）</td></tr>
+          <tr><td>进度条更新</td><td>400ms</td><td>ease-in-out</td><td>平滑增长</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert info">
+      <span class="emoji">💡</span>
+      <p><strong>开发建议：</strong>角色动画使用 <strong>Lottie（BodyMovin）</strong> 实现，iOS 使用 <code>lottie-ios</code>，Android 使用 <code>lottie-android</code>，React Native 使用 <code>lottie-react-native</code>。数字卡片交互动效可使用原生 <code>Animated API</code> 或 <code>Reanimated 3</code> 实现弹性效果。</p>
+    </div>
+  </section>
+
+  <!-- ⑥ 导航与控件 -->
+  <section>
+    <div class="section-label">Section 06</div>
+    <h2><span class="num">6</span>导航控件规范</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#E8F4FD">◀</span>返回按钮（左上角）</h3>
+        <div class="spec-row"><span class="spec-key">尺寸</span><span class="spec-val"><code>44 × 44dp 最小触控区</code></span></div>
+        <div class="spec-row"><span class="spec-key">图标</span><span class="spec-val">圆角左箭头（&lt; 或 ←），线粗 2dp</span></div>
+        <div class="spec-row"><span class="spec-key">颜色</span><span class="spec-val"><code>#FFFFFF</code> 或深色背景对比色</span></div>
+        <div class="spec-row"><span class="spec-key">点击行为</span><span class="spec-val">弹出确认弹层「确定要退出吗？」，防误触</span></div>
+        <div class="spec-row"><span class="spec-key">背景</span><span class="spec-val">半透明白色圆形容器 <code>rgba(255,255,255,0.3)</code></span></div>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#FFF3E0">📊</span>底部进度条</h3>
+        <div class="spec-row"><span class="spec-key">高度</span><span class="spec-val"><code>4dp</code></span></div>
+        <div class="spec-row"><span class="spec-key">轨道色</span><span class="spec-val"><code>rgba(255,255,255,0.3)</code></span></div>
+        <div class="spec-row"><span class="spec-key">进度色</span><span class="spec-val"><code>#FFFFFF</code> 或关卡主题色</span></div>
+        <div class="spec-row"><span class="spec-key">圆角</span><span class="spec-val"><code>2dp</code> full round</span></div>
+        <div class="spec-row"><span class="spec-key">含义</span><span class="spec-val">表示当前关卡/大关卡进度（非单题进度）</span></div>
+        <div class="spec-row"><span class="spec-key">位置</span><span class="spec-val">屏幕底部，距底边 <code>16dp + SafeArea</code></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 无障碍 -->
+  <section>
+    <div class="section-label">Section 07</div>
+    <h2><span class="num">7</span>无障碍 &amp; 儿童适配要求</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon" style="background:#F0FFF4">♿</span>无障碍适配</h3>
+        <ul>
+          <li>所有交互元素触控区域 ≥ <strong>44×44dp</strong></li>
+          <li>色彩对比度：文字/图标与背景对比度 ≥ <strong>4.5:1</strong></li>
+          <li>支持 <strong>VoiceOver / TalkBack</strong>，数字元素添加 <code>accessibilityLabel</code></li>
+          <li>动效提供「减少动效」模式适配（iOS Reduce Motion / Android）</li>
+          <li>不依赖颜色作为唯一区分维度（加形状/位置辅助）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:#FFF9E6">👶</span>幼儿特殊适配</h3>
+        <ul>
+          <li><strong>防误触</strong>：返回/退出按钮需二次确认</li>
+          <li><strong>宽容点击区</strong>：幼儿触控精度低，扩大 20% 响应区域</li>
+          <li><strong>无广告区域</strong>：核心游戏区域内不出现任何广告或付费引导</li>
+          <li><strong>超时提示</strong>：静止 15s 后小象主动给出语音提示引导</li>
+          <li><strong>家长模式入口</strong>：隐藏在设置角落（三连击 logo 进入）</li>
+          <li><strong>内容分级</strong>：仅含适龄内容，符合 COPPA 规范</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ 开发交付 -->
+  <section>
+    <div class="section-label">Section 08</div>
+    <h2><span class="num">8</span>开发交付清单</h2>
+
+    <div class="card">
+      <h3><span class="icon" style="background:#EEF2FF">📦</span>设计师交付物</h3>
+      <ul class="checklist">
+        <li class="done">所有数字（1–10）完整 SVG / PNG 插图（@1x, @2x, @3x）</li>
+        <li class="done">角色（小象、绿色怪兽）各状态插图（待机/欢呼/摇头/跳跃）</li>
+        <li>Lottie JSON 动画文件（角色动画、粒子动画、完成庆祝动画）</li>
+        <li>Figma 源文件（含组件库、Color Style、Text Style）</li>
+        <li>所有状态的界面标注文件（Figma Inspect 或 Zeplin）</li>
+        <li>音效设计文档（或委托音效团队的需求说明）</li>
+        <li>各屏幕尺寸适配说明（iPhone SE / iPhone Pro Max / iPad）</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon" style="background:#FFF0F0">💻</span>开发工程师实现要点</h3>
+      <table>
+        <thead>
+          <tr><th>模块</th><th>技术方案建议</th><th>注意事项</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>拖拽排序</td><td>iOS: UIKit DragInteraction / SwiftUI onDrag<br>Android: ItemTouchHelper / Jetpack Compose drag</td><td>需实现吸附逻辑、碰撞检测</td></tr>
+          <tr><td>角色动画</td><td>Lottie（首选）/ Rive</td><td>注意内存管理，及时释放不可见动画</td></tr>
+          <tr><td>粒子效果</td><td>SpriteKit (iOS) / Particle System (Android)</td><td>完成庆祝时限制粒子数量，避免低端机卡顿</td></tr>
+          <tr><td>音频管理</td><td>AVAudioSession (iOS) / SoundPool (Android)</td><td>需遵守静音开关，支持后台音频暂停</td></tr>
+          <tr><td>状态管理</td><td>单一数据流（Redux / MobX / ViewModel）</td><td>排序状态、得分、进度需持久化</td></tr>
+          <tr><td>适配</td><td>使用相对布局 + 百分比尺寸</td><td>最小支持屏幕：320pt 宽（iPhone SE）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  早教数字游戏 UI 交互视觉规范文档 · 版本 v1.0 · 仅供设计 &amp; 开发内部参考
+</footer>
+
+</body>
+</html>
